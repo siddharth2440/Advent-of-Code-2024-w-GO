@@ -47,6 +47,21 @@ func calculate_the_diff_of_adjacent_elements_row(levels *map[int]Level) *map[int
 	return levels
 }
 
+// Part 2 Toremove the single defected element to make it safe , after doing this still it is unsafe so it is unsafe
+
+// Update the Slice / remove the defected element
+func update_Slice_element(level *Level, ele *int) {
+	fmt.Println(*ele)
+	// fmt.Println((*level).isSorted)
+	if !(*level).isSorted {
+		// check for defective element
+		fmt.Println((*level).row)
+	}
+	// for key, _ := range *level {
+	// 	fmt.Printf("%v \n", (*level)[key].row)
+	// }
+}
+
 func is_Slices_are_strictly_sorted(level []int) (bool, bool) {
 	is_strictly_increasing := true
 	is_strictly_decreasing := true
@@ -61,8 +76,9 @@ func is_Slices_are_strictly_sorted(level []int) (bool, bool) {
 	return is_strictly_increasing, is_strictly_decreasing
 }
 
-func main() {
-	filePath := "./inputs/input.txt"
+// To run this change function name Puzzle1 ->> main
+func Puzzle1() {
+	filePath := "./inputs/sample.txt"
 	file, err := os.Open(filePath)
 
 	if err != nil {
@@ -107,21 +123,23 @@ func main() {
 			isSorted:                is_sorted,
 		}
 	}
-	for key, value := range levels {
-		fmt.Printf("Level %d: %v\n", key+1, value.row)
-	}
+
+	// for key, value := range levels {
+	// 	fmt.Printf("Level %d: %v\n", key+1, value.row)
+	// }
 	// removing the undorted levels
 	for key, value := range levels {
 		if !value.isSorted {
-			remove_an_element_from_map(&levels, &key)
+			// remove_an_element_from_map(&levels, &key)
+			update_Slice_element(&value, &key)
 		}
 	}
 
-	fmt.Println("After Deleteting")
+	// fmt.Println("After Deleteting")
 	// print the value of the levels
-	for key, value := range levels {
-		fmt.Printf("Level %d: %v\n", key+1, value.row)
-	}
+	// for key, value := range levels {
+	// 	fmt.Printf("Level %d: %v\n", key+1, value.row)
+	// }
 
 	// calculate_the_diff_of_adjacent_elements_row()
 	calculate_the_diff_of_adjacent_elements_row(&levels)
